@@ -1,0 +1,1 @@
+An SEO specialist agent that analyzes the Google Search Engine Results Page (SERP) for specific keywords to determine ranking opportunities.

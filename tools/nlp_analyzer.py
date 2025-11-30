@@ -1,16 +1,11 @@
 import requests
 from bs4 import BeautifulSoup
 import re
-import logging
-import os
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 import numpy as np
+from typing import Dict, Any, List, Tuple
 
-# Configure logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-logger = logging.getLogger(__name__)
-
-def clean_text(html_content):
+def clean_text(html_content: str) -> str:
     """
     Parses HTML, removes tags, scripts, styles, and special characters.
     Returns clean, lowercase plain text.
@@ -18,7 +13,7 @@ def clean_text(html_content):
     try:
         soup = BeautifulSoup(html_content, 'html.parser')
 
-        # 1. Remove script and style elements
+        # 1. Remove script and style elements and structural/meta elements
         for script_or_style in soup(['script', 'style', 'header', 'footer', 'nav', 'meta', 'noscript']):
             script_or_style.decompose()
 
@@ -33,10 +28,11 @@ def clean_text(html_content):
 
         return text
     except Exception as e:
-        logger.error(f"Error cleaning HTML: {e}")
+        # Simplified error handling without logger
+        # print(f"Error cleaning HTML: {e}") 
         return ""
 
-def fetch_content(url):
+def fetch_content(url: str) -> str or None:
     """
     Fetches the homepage content with a timeout and user-agent.
     """
@@ -48,54 +44,56 @@ def fetch_content(url):
         if not url.startswith('http'):
             url = 'https://' + url
             
-        logger.info(f"Crawling: {url}")
+        # print(f"Crawling: {url}")
         response = requests.get(url, headers=headers, timeout=10)
         response.raise_for_status()
         return response.text
     except Exception as e:
-        logger.warning(f"Failed to fetch {url}: {e}")
+        # Simplified error handling without logger
+        # print(f"Failed to fetch {url}: {e}")
         return None
 
-def _get_tfidf_scores(corpus, valid_urls):
-    """Internal helper to calculate TF-IDF scores."""
+def _get_tfidf_scores(corpus: List[str]) -> Dict[str, float]:
+    """
+    Internal helper to calculate TF-IDF scores for a single document.
+    Returns a dictionary of term -> score (unsorted).
+    """
     try:
-        # ngram_range=(1, 3): Captures "biodata" (1), "wedding biodata" (2)
+        # ngram_range=(1, 3): Captures single words up to 3-word phrases
         vectorizer = TfidfVectorizer(
             ngram_range=(1, 3), 
             stop_words='english', 
-            max_df=0.85, 
+            max_df=1.0, 
             min_df=1
         )
         
         tfidf_matrix = vectorizer.fit_transform(corpus)
         feature_names = np.array(vectorizer.get_feature_names_out())
 
-        results = {}
-
-        # Extract Top 100 Terms per Site
-        for i, url in enumerate(valid_urls):
-            row = tfidf_matrix[i]
-            scores = row.toarray()[0]
-            # Get indices of top 100 scores
-            top_n_indices = scores.argsort()[-100:][::-1]
-            
-            top_terms = {}
-            for idx in top_n_indices:
-                term = feature_names[idx]
-                score = round(float(scores[idx]), 3)
-                if score > 0:
-                    top_terms[term] = score
-            
-            results[url] = top_terms
-        return results
+        scores = tfidf_matrix[0].toarray()[0]
+        # Get indices of top 50 scores
+        top_n_indices = scores.argsort()[-50:][::-1]
+        
+        top_terms: Dict[str, float] = {}
+        for idx in top_n_indices:
+            term = feature_names[idx]
+            score = round(float(scores[idx]), 4)
+            if score > 0:
+                top_terms[term] = score
+        return top_terms
 
     except Exception as e:
-        logger.error(f"Error during TF-IDF calculation: {e}")
-        return {url: {} for url in valid_urls}
+        # Simplified error handling without logger
+        # print(f"Error during TF-IDF calculation: {e}")
+        return {}
 
-def _get_ngram_density(corpus, valid_urls):
-    """Internal helper to calculate frequency and density for 1, 2, 3, 4-grams."""
-    density_results = {url: {} for url in valid_urls}
+
+def _get_ngram_density(corpus: List[str]) -> Dict[str, Dict[str, Dict[str, Any]]]:
+    """
+    Internal helper to calculate frequency and density for 1, 2, 3, 4-grams.
+    Returns a dictionary structured as: { '1gram': {term: {'count': N, 'density': D}, ...} } (unsorted).
+    """
+    density_results: Dict[str, Dict[str, Dict[str, Any]]] = {}
     
     # Loop through 1-gram to 4-gram
     for n in [1, 2, 3, 4]:
@@ -107,92 +105,109 @@ def _get_ngram_density(corpus, valid_urls):
             dtm = vectorizer.fit_transform(corpus)
             features = np.array(vectorizer.get_feature_names_out())
             
-            for i, url in enumerate(valid_urls):
-                row = dtm[i].toarray()[0]
-                total_words_in_doc = row.sum() # Total n-grams in this specific document
-                
-                # Get top 50 indices by count
-                top_indices = row.argsort()[-50:][::-1]
-                
-                site_ngram_data = {}
-                
-                for idx in top_indices:
-                    count = int(row[idx])
-                    if count > 0:
-                        term = features[idx]
-                        # Density = (Count of this phrase / Total phrases in doc)
-                        density = round(count / total_words_in_doc, 5) if total_words_in_doc > 0 else 0
-                        
-                        site_ngram_data[term] = {
-                            "count": count,
-                            "density": density
-                        }
-                
-                if ngram_key not in density_results[url]:
-                    density_results[url][ngram_key] = {}
-                
-                density_results[url][ngram_key] = site_ngram_data
+            row = dtm[0].toarray()[0]
+            total_words_in_doc = row.sum() # Total n-grams in this specific document
+            
+            # Get top 50 indices by count
+            top_indices = row.argsort()[-50:][::-1]
+            
+            site_ngram_data: Dict[str, Dict[str, Any]] = {}
+            
+            for idx in top_indices:
+                count = int(row[idx])
+                if count > 0:
+                    term = features[idx]
+                    # Density = (Count of this phrase / Total phrases in doc)
+                    density = round(count / total_words_in_doc, 5) if total_words_in_doc > 0 else 0
+                    
+                    site_ngram_data[term] = {
+                        "count": count,
+                        "density": density
+                    }
+            
+            density_results[ngram_key] = site_ngram_data
                 
         except ValueError:
-            # Handles cases where a document is too short for 4-grams
-            logger.warning(f"Could not generate {n}-grams (corpus might be too small).")
-            for url in valid_urls:
-                 density_results[url][ngram_key] = {}
+            # Simplified error handling without logger
+            # print(f"Could not generate {n}-grams (corpus might be too small).")
+            density_results[ngram_key] = {}
                  
     return density_results
 
-def analyze_competitors_content(file_path="data/competitors.txt"):
+def sort_analysis_results(data_dict: Dict[str, float or Dict[str, Any]], sort_by_key: str = None) -> List[Tuple]:
     """
-    Main function:
-    1. Reads URLs.
-    2. Fetches & Cleans content (Corpus creation).
-    3. Runs TF-IDF Analysis (Top 100).
-    4. Runs N-Gram Density Analysis (Top 50 for 1,2,3,4-grams).
-    5. Returns a merged dictionary.
+    Sorts a dictionary of terms in descending order by their value (score or count/density).
+
+    :param data_dict: The dictionary of terms (str) to their values (float or dict).
+    :param sort_by_key: If the values are dictionaries (e.g., in n-gram density), 
+                        specify the key to sort by ('count' or 'density').
+    :return: A list of tuples (term, value) or (term, count, density), sorted descendingly.
+    """
+    if not data_dict:
+        return []
+
+    if sort_by_key is None:
+        # For TF-IDF, values are floats (the scores)
+        # Sort by the float value itself
+        sorted_list = sorted(data_dict.items(), key=lambda item: item[1], reverse=True)
+        # item[0] is the term (n-gram), item[1] is the score
+        return sorted_list
+    else:
+        # For N-Gram Density, values are dictionaries {"count": X, "density": Y}
+        # Sort by the specified key ('count' or 'density')
+        sorted_list = sorted(data_dict.items(), key=lambda item: item[1].get(sort_by_key, 0), reverse=True)
+        
+        # Format the output to be a flat tuple: (term, count, density)
+        formatted_list = [
+            (term, data['count'], data['density']) 
+            for term, data in sorted_list
+        ]
+        return formatted_list
+
+
+def analyze_content(base_url: str) -> Dict[str, Any]:
+    """
+    Main function: Fetches, cleans, analyzes, and returns sorted results for a URL.
     """
     
-    # 1. Read URLs
-    if not os.path.exists(file_path):
-        logger.error(f"File not found: {file_path}")
-        return {}
+    # 1. Fetch & Clean Content
+    raw_html = fetch_content(base_url)
+    if not raw_html:
+        return {"status": "error", "message": f"Could not fetch content for {base_url}"}
 
-    with open(file_path, 'r') as f:
-        urls = [line.strip() for line in f if line.strip()]
+    cleaned_text = clean_text(raw_html)
+    if not cleaned_text:
+        return {"status": "error", "message": f"No extractable text found for {base_url}"}
 
-    if not urls:
-        logger.warning("No URLs found in file.")
-        return {}
+    # The corpus for the single URL analysis
+    corpus = [cleaned_text]
 
-    # 2. Build Corpus (Fetch once, use multiple times)
-    corpus = []
-    valid_urls = []
-
-    for url in urls:
-        raw_html = fetch_content(url)
-        if raw_html:
-            cleaned_text = clean_text(raw_html)
-            if cleaned_text:
-                corpus.append(cleaned_text)
-                valid_urls.append(url)
-            else:
-                logger.warning(f"No text extracted from {url}")
-
-    if not corpus:
-        return {}
-
-    # 3. Run Calculations
-    logger.info("Running TF-IDF Analysis...")
-    tfidf_data = _get_tfidf_scores(corpus, valid_urls)
+    # 2. Run Calculations
+    # print(f"Running content analysis for: {base_url}")
     
-    logger.info("Running N-Gram Density Analysis...")
-    density_data = _get_ngram_density(corpus, valid_urls)
+    # These return the top N terms as UNORDERED dictionaries
+    tfidf_data = _get_tfidf_scores(corpus)
+    density_data = _get_ngram_density(corpus)
 
-    # 4. Merge Results
-    final_results = {}
-    for url in valid_urls:
-        final_results[url] = {
-            "tf_idf_top_100": tfidf_data.get(url, {}),
-            "keyword_density": density_data.get(url, {})
-        }
+    # 3. Sort Results 🥇
+    
+    # Sort TF-IDF by the score (descending)
+    # Result: List of tuples (term, tfidf_score)
+    sorted_tfidf = sort_analysis_results(tfidf_data)
+    
+    # Sort N-Grams by 'count' (descending)
+    # Result: Dict structured as { '1gram': [(term, count, density), ...], ...}
+    sorted_density_data = {}
+    for n_key, n_data in density_data.items():
+        # Sort each n-gram level by the 'count' (most occurring first)
+        sorted_density_data[n_key] = sort_analysis_results(n_data, sort_by_key='count')
 
-    return final_results
+
+    # 4. Merge and Return Results
+    return {
+        "url": base_url,
+        "status": "success",
+        # Results are now SORTED LISTS, ready for display
+        "tf_idf_top_50_sorted": sorted_tfidf, 
+        "keyword_density_sorted_by_count": sorted_density_data
+    }

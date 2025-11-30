@@ -1,6 +1,6 @@
 import os
 import json
-from serpapi import GoogleSearch
+from serpapi import Client
 from dotenv import load_dotenv
 
 # Load environment variables from .env file
@@ -33,8 +33,8 @@ def get_indian_organic_results(keyword):
     }
 
     try:
-        search = GoogleSearch(params)
-        results = search.get_dict()
+        client = Client(api_key=api_key)
+        results = client.search(params)
         
         # 3. specific extraction based on your provided structure
         organic_results = results.get("organic_results", [])
@@ -47,11 +47,9 @@ def get_indian_organic_results(keyword):
                 "position": item.get("position"),
                 "title": item.get("title"),
                 "url": item.get("link"), # Mapped from 'link' in your raw structure
-                "snippet": item.get("snippet", "No description available")
             }
             cleaned_data.append(entry)
 
-        # Return formatted JSON
         return json.dumps(cleaned_data, indent=2)
 
     except Exception as e:
