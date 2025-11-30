@@ -1,0 +1,1 @@
+A specialized reporting agent designed to audit website performance. It utilizes the Google PageSpeed Insights API to fetch Core Web Vitals (Lab and Real User Data), persists the raw data for historical tracking, and synthesizes the results into actionable, human-readable markdown reports for developers and stakeholders.

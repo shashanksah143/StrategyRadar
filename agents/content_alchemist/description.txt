@@ -1,0 +1,1 @@
+This agent performs deep content analysis on competitor websites. It utilizes TF-IDF scoring and N-Gram density analysis (1 to 4 grams) to reverse-engineer the keyword strategies and topic clusters used by competitors.

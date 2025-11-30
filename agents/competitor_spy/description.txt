@@ -1,0 +1,1 @@
+This agent fetches sitemaps from competitor websites to extract URL structures and last-modified dates. It outputs a structured list of site updates that can be used by other agents for content strategy or competitive analysis.
