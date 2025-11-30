@@ -5,7 +5,7 @@ from pathlib import Path
 from typing import Optional
 
 
-def save_output_file(content: str, file_format: str = "txt", filename: Optional[str] = None) -> dict:
+def save_output_file(content: str, file_format: str = "json", filename: Optional[str] = None) -> dict:
     """
     Save content to the output folder with today's date (dd/mm/yyyy structure).
     Creates the dated folder if it doesn't exist.
