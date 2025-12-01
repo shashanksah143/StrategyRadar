@@ -135,6 +135,4 @@ output/
 *.csv
 *.json
 *.xlsx
-config/data/competitor_url.txt
-config/data/keywords.txt
 sync/
