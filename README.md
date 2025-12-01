@@ -691,14 +691,12 @@ SOFTWARE.
 - **Project Name**: SEO Competitive Intelligence & Analysis Engine
 - **Author**: Shashank Sah
 - **Contact**: shashanksah143@gmail.com
-- **Niche**: Biodata/Matrimonial Services
-- **Target Domain**: India (Google.co.in)
 - **Created**: December 2025
 - **Python Version**: 3.12+
 - **Framework**: Google Agent Development Kit (ADK)
 - **LLM**: Google Gemini (2.5-pro, 2.5-flash)
 - **Status**: Active Development
-- **Frequency**: Daily automated reporting (configurable)
+- **Frequency**: Daily automated reporting (manually configurable)
 
 ---
 
