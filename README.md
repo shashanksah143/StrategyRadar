@@ -287,7 +287,7 @@ source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 ### 3. Install Dependencies
 
 ```bash
-pip install -e .
+uv sync
 # Or manually:
 pip install google-adk serpapi beautifulsoup4 scikit-learn requests python-dotenv
 ```
@@ -299,11 +299,13 @@ pip install google-adk serpapi beautifulsoup4 scikit-learn requests python-doten
 cat > .env << 'EOF'
 SERPAPI_KEY=your_serpapi_key_here
 GOOGLE_API_KEY=your_google_api_key_here
+PAGESPEED_API_KEY=your_pagespeed_apy_key_here
 EOF
 
 # Or export directly:
 export SERPAPI_KEY="your_key"
 export GOOGLE_API_KEY="your_key"
+export PAGESPEED_API_KEY="your_key"
 ```
 
 ### 5. Configure Target Keywords & Competitors
@@ -318,36 +320,7 @@ Edit these files to customize analysis:
 
 ## Running the Project
 
-### Option 1: Run Full Pipeline (Recommended)
-
-```bash
-# Activate virtual environment
-source .venv/bin/activate
-
-# Run the complete orchestration
-python -m agents.root_agent.agent
-```
-
-### Option 2: Run Individual Agents (Testing)
-
-```bash
-# Test Content Analysis
-python -c "from agents.content_alchemist.agent import root_agent; root_agent.execute()"
-
-# Test Ranking Analysis
-python -c "from agents.rank_profiler.agent import root_agent; root_agent.execute()"
-
-# Test Competitor Updates
-python -c "from agents.competitor_update_checker.agent import root_agent; root_agent.execute()"
-
-# Test Web Performance
-python -c "from agents.web_performance.agent import root_agent; root_agent.execute()"
-
-# Test Final Report
-python -c "from agents.competitor_analyst.agent import root_agent; root_agent.execute()"
-```
-
-### Option 3: Use ADK Web Interface (Interactive)
+### Use ADK Web Interface (Interactive)
 
 ```bash
 # Launch web dashboard
@@ -360,26 +333,6 @@ adk web ./agents
 # - Monitor real-time execution
 # - Download outputs and reports
 ```
-
-### Expected Output
-
-```
-[INFO] Starting Master Orchestrator...
-[INFO] PHASE 1: Data Gathering (Parallel)
-[INFO]   ├─ Content Alchemist started...
-[INFO]   ├─ Rank Profiler started...
-[INFO]   ├─ Competitor Update Checker started...
-[INFO]   └─ Web Performance Analyzer started...
-
-[Status] Waiting for Phase 1 completion (~15-20 minutes)...
-
-[INFO] PHASE 2: Analysis & Synthesis
-[INFO]   └─ Competitor Analyst synthesizing data...
-
-[SUCCESS] Report saved to: output/01-12-2025/daily_report.md
-```
-
----
 
 ## Output & Reports
 
