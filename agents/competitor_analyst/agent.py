@@ -20,7 +20,7 @@ instruction_text = load_file_content("agents/competitor_analyst/instructions.txt
 competitor_analyst = LlmAgent(
     name="competitor_analyst",
     model=Gemini(
-        model="gemini-1.5-pro", # Using Pro for better reasoning on large context
+        model="gemini-2.5-pro", # Using Pro for better reasoning on large context
         retry_options=get_http_retry_config()
     ),
     instruction=instruction_text,

@@ -1,6 +1,10 @@
-# SEO Audit & Competitor Intelligence System
+# 🤖 SEO Competitive Intelligence & Analysis Engine
 
-An intelligent multi-agent system that performs comprehensive SEO analysis and competitive intelligence gathering using Google's Agent Development Kit (ADK) and Gemini AI models.
+**AI-Powered Multi-Agent System for Real-Time SEO Audits and Competitive Intelligence**
+
+An intelligent, fully automated multi-agent orchestration system powered by Google's Agent Development Kit (ADK) and Gemini AI that performs comprehensive competitive intelligence, technical SEO audits, and generates data-driven strategic intelligence reports. Built for the biodata/matrimonial niche, the system analyzes 5 target keywords against 5 main competitors while evaluating client website performance.
+
+---
 
 ## Table of Contents
 
@@ -20,652 +24,356 @@ An intelligent multi-agent system that performs comprehensive SEO analysis and c
 
 ## Project Overview
 
-This project is an **SEO Analysis & Competitive Intelligence Platform** designed to:
+### What This Project Does
 
-1. **Monitor Search Rankings**: Track your website and competitors' positions for target keywords on Google India
-2. **Analyze Content**: Perform NLP analysis on competitor and client websites to identify content gaps and topic strategies
-3. **Track Competitor Updates**: Monitor competitor sitemaps to understand their update frequency and content velocity
-4. **Assess Web Performance**: Evaluate technical health metrics (Core Web Vitals, performance scores)
-5. **Generate Strategic Reports**: Synthesize all collected data into actionable insights and recommendations
+This is an **autonomous SEO analysis and competitive intelligence platform** that:
 
-The system is built for the **biodata/matrimonial website niche**, analyzing 5 target keywords against 5 main competitors while also evaluating the client's website.
+1. **Monitors Search Rankings** - Tracks your website and competitors' positions for target keywords on Google India in real-time
+2. **Analyzes Content Strategy** - Performs NLP analysis (TF-IDF, n-gram extraction) to identify content gaps and competitive vocabulary
+3. **Tracks Competitor Velocity** - Monitors competitor sitemaps to understand update frequency and content publishing patterns
+4. **Assesses Technical Health** - Evaluates Core Web Vitals (LCP, CLS, FID, TTFB) and PageSpeed performance metrics
+5. **Generates Strategic Reports** - Synthesizes 5 data sources into a comprehensive intelligence brief with actionable recommendations
 
-### Report Type: Daily Competitive Intelligence & SEO Strategic Report
+### The Daily Competitive Intelligence & SEO Strategic Report
 
-This system generates a **"Daily Competitive Intelligence & SEO Strategic Report"** - a comprehensive, multi-dimensional intelligence brief that goes far beyond traditional L3 matrices. Rather than simple ranking checklists, this report:
+Instead of traditional L3 matrices, this system generates a **strategic intelligence brief** that:
 
-- **Synthesizes 5 data sources** into correlated insights
-- **Identifies root causes** (e.g., "Poor rankings due to technical performance bottleneck")
-- **Recommends specific actions** with business impact
+- **Synthesizes 5 data sources** into correlated, actionable insights
+- **Identifies root causes** for ranking issues (e.g., "Poor rankings linked to Core Web Vitals bottleneck")
+- **Recommends specific actions** with business impact and effort estimates
 - **Tracks competitor velocity** and market positioning shifts
-- **Analyzes content gaps** using AI-powered NLP
-- **Targets multi-stakeholder audiences** (C-level, product, marketing, technical teams)
+- **Analyzes content gaps** using AI-powered NLP and keyword analysis
+- **Targets multiple stakeholders** with relevant insights for each role
 
-**Key Difference from L3 Matrix**: Traditional L3 matrices show keyword rankings in a table format for execution teams. This report connects rankings to technical issues, content gaps, and competitor strategies, then prioritizes 3 specific action items for decision-makers.
+**Key Difference from L3 Matrix**: While L3 matrices show keyword rankings in a spreadsheet for execution teams, this report connects rankings to technical issues, content gaps, and competitor strategies, then prioritizes 3 specific strategic action items for decision-makers.
 
-### Use Cases & Stakeholder Value
+### Stakeholder Value Matrix
 
-| Stakeholder             | Value Delivered                                                                                |
-| ----------------------- | ---------------------------------------------------------------------------------------------- |
-| **C-Level Executives**  | Daily market positioning brief, strategic threats & opportunities, ROI-focused recommendations |
-| **Product Managers**    | Competitive feature gaps, market velocity trends, product roadmap impact                       |
-| **Content Strategists** | Content gap analysis, topic opportunities, competitor content velocity                         |
-| **SEO Specialists**     | Detailed technical audits, ranking analysis, actionable optimization tickets                   |
-| **Engineering Teams**   | Performance bottlenecks, Core Web Vitals assessment, technical priorities                      |
-| **Marketing Directors** | Competitive benchmarking, market share insights, campaign impact data                          |
+| **Stakeholder Role**    | **Reports & Insights Delivered**                                                                           |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------- |
+| **C-Level Executives**  | Daily market positioning, strategic threats, competitive threats & opportunities, ROI-focused action items |
+| **Product Managers**    | Competitor feature gaps, market velocity trends, technical priorities affecting user experience            |
+| **Content Strategists** | Content gap analysis, keyword opportunities, competitor content velocity, topic recommendations            |
+| **SEO Specialists**     | Detailed technical audits, ranking positions, root cause analysis, optimization priorities                 |
+| **Engineering Teams**   | Web Vitals assessment, performance bottlenecks, technical priorities                                       |
+| **Marketing Directors** | Competitive benchmarking, market aggressiveness trends, campaign opportunity analysis                      |
 
 ---
 
 ## System Architecture
 
-### High-Level Design
+### High-Level Orchestration Flow
+
+The system follows a **two-phase architecture**:
+
+- **Phase 1 (Parallel)**: All data gathering agents run simultaneously for speed
+- **Phase 2 (Sequential)**: Analysis agent waits for Phase 1 completion, then synthesizes insights
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│           MASTER ORCHESTRATOR (Sequential Agent)           │
-└──────────────────────┬──────────────────────────────────────┘
-                       │
-        ┌──────────────┴──────────────┐
-        │                             │
-   PHASE 1: DATA GATHERING         PHASE 2: ANALYSIS & MONITORING
-   (Parallel Execution)           (Sequential & Continuous)
-        │                             │
-        ├─ Content Alchemist          │
-        │  ├─ Competitor 1-5          ├─ Competitor Analyst
-        │  └─ Client Website          │  (Synthesizes to report)
-        │                             │
-        ├─ Rank Profiler              ├─ Google Update Analyst
-        │  ├─ Keyword 1-5             │  (Monitors updates)
-        │  └─ (Google SERP data)      │
-        │                             ├─ Competitor Analyst
-        ├─ Competitor Update Checker  │  (Final report generation)
-        │  ├─ Sitemap 1-5             │
-        │  └─ (Update frequency)      │
-        │                             │
-        └─ Web Performance Analyzer   │
-           └─ (Core Web Vitals)       │
-                                      │
-                ┌─────────────────────┘
-                │
-        ┌───────▼────────────┐
-        │ Final Report       │
-        │ (Multi-layer       │
-        │  Intelligence)     │
-        └────────────────────┘
+┌────────────────────────────────────────────────────────────────┐
+│              MASTER ORCHESTRATOR (Sequential Execution)        │
+└────────────────────┬───────────────────────────────────────────┘
+                     │
+        ┌────────────┴────────────┐
+        │                         │
+    PHASE 1: DATA GATHERING   PHASE 2: ANALYSIS
+    (Parallel - All at Once)  (Sequential - After Phase 1)
+        │                         │
+        ├─ Content Alchemist      │
+        │  (NLP Analysis)         │
+        │                         │
+        ├─ Rank Profiler          ├─ Competitor Analyst
+        │  (SERP Rankings)        │  (Final Report Generation)
+        │                         │
+        ├─ Competitor Update      │
+        │  Checker (Sitemaps)     │
+        │                         │
+        └─ Web Performance        │
+           Analyzer (Web Vitals)  │
+                                  │
+            ┌─────────────────────┘
+            │
+        ┌───▼────────────┐
+        │ Daily Strategic│
+        │ Intelligence   │
+        │ Report (MD)    │
+        └────────────────┘
+
+⏱️ Timeline: Phase 1 (~15-20 min) → Phase 2 (~5-10 min) = ~25-30 min total
 ```
 
 ---
 
 ## Agents Overview
 
-### 1. **Content Alchemist** 🧪
+The system consists of **4 parallel data-gathering agents** and **1 synthesis agent**:
 
-**Type**: Parallel Agent (6 sub-agents)
+### Phase 1: Data Gathering (Parallel Execution)
 
-**Responsibility**: NLP content analysis using TF-IDF and n-gram extraction
+#### 1. **Content Alchemist** 🧪 - NLP Content Analysis
 
-**Sub-Agents**:
+- **Agents**: 5 competitors + 1 client (6 parallel sub-agents)
+- **Process**: Fetches HTML, cleans text, extracts TF-IDF keywords and n-grams
+- **Output**:
+  - TF-IDF keyword scores (identifies high-value keywords competitors rank for)
+  - N-gram patterns (2-gram, 3-gram, 4-gram phrases)
+  - Vocabulary gaps (terms competitors use that you don't)
+  - Content structure insights
 
-- `content_analyst_1` to `content_analyst_5`: Analyze each of the 5 competitors
-- `content_analyst_for_our_website`: Analyze the client's website
+#### 2. **Rank Profiler** 📊 - Google Search Rankings
 
-**Tools Used**:
+- **Agents**: 5 keywords in parallel
+- **Process**: Queries Google India via SerpAPI for top 10 organic results per keyword
+- **Output**:
+  - Client's current ranking position
+  - Competitor positions in SERP
+  - Ranking gaps vs competitors
+  - Top-ranking URLs and their snippets
 
-- `analyze_content`: Fetches HTML, cleans text, extracts TF-IDF keywords, and generates n-gram analysis
+#### 3. **Competitor Update Checker** 🕵️ - Content Velocity
 
-**Output**:
+- **Agents**: 5 competitors in parallel
+- **Process**: Fetches and parses sitemap.xml from each competitor
+- **Output**:
+  - Total URLs indexed
+  - Last update timestamps
+  - Recently modified pages
+  - Update frequency patterns (daily/weekly/monthly)
+  - Content velocity comparison
 
-- TF-IDF scores for keywords
-- High-frequency bigrams and trigrams
-- Topic vocabulary analysis
-- Content structure insights
+#### 4. **Web Performance Analyzer** ⚡ - Technical SEO Health
 
-**Key Metrics**:
-
-- Term Frequency-Inverse Document Frequency (TF-IDF)
-- N-gram patterns (1-gram, 2-gram, 3-gram, 4-gram)
-- Unique vocabulary per domain
-
----
-
-### 2. **Rank Profiler** 📊
-
-**Type**: Parallel Agent (5 sub-agents)
-
-**Responsibility**: Monitor search engine rankings for target keywords
-
-**Sub-Agents**:
-
-- `keyword_1_ranking_data` to `keyword_5_ranking_data`: Analyze each target keyword separately
-
-**Tools Used**:
-
-- `get_indian_organic_results`: Fetches top 10 Google Search results for India using SerpAPI
-- Supports keyword list from `config/data/keywords.txt`
-
-**Output**:
-
-- Current ranking position for client website
-- Competitor positions in SERP
-- URL structure of top-ranked pages
-- Ranking gaps vs competitors
-
-**Key Features**:
-
-- India-specific search results (Google.co.in)
-- Top 10 organic results per keyword
-- Real-time SERP data
+- **Single Agent**: Analyzes both client and competitors
+- **Process**: Fetches Google PageSpeed Insights data (Lab + Real User data)
+- **Output** (Mobile & Desktop):
+  - Performance Score (0-100)
+  - LCP (Largest Contentful Paint): Target <2.5s
+  - CLS (Cumulative Layout Shift): Target <0.1
+  - FID (First Input Delay): Target <100ms
+  - TTFB (Time to First Byte)
+  - FCP (First Contentful Paint)
+- **Ratings**: 🟢 GOOD | 🟠 NEEDS_IMPROVEMENT | 🔴 POOR
 
 ---
 
-### 3. **Competitor Update Checker** 🕵️
+### Phase 2: Analysis & Synthesis (Sequential)
 
-**Type**: Parallel Agent (5 sub-agents)
+#### 5. **Competitor Analyst** 🎯 - Strategic Intelligence Synthesizer
 
-**Responsibility**: Track competitor website updates and content velocity
-
-**Sub-Agents**:
-
-- `sitemap_analyzer_1` to `sitemap_analyzer_5`: Analyze each competitor's sitemap
-
-**Tools Used**:
-
-- `fetch_competitor_sitemap`: Fetches and parses `sitemap.xml` from competitor domains
-- Reads competitor URLs from `config/data/competitor_url.txt`
-
-**Output**:
-
-- Total URL count per competitor
-- Last update timestamps
-- Content velocity metrics
-- Sitemap structure analysis
-- Update frequency patterns
-
-**Key Metrics**:
-
-- Total pages indexed
-- Recently updated pages
-- Content addition rate
-- Update schedule patterns
+- **Type**: Standalone LLM Agent
+- **Process**: Takes all Phase 1 outputs and synthesizes into strategic insights
+- **Output** (Markdown Report):
+  1. **Technical Health Check** - Performance scorecard, bottleneck identification
+  2. **SERP Battlefield** - Ranking leaderboard, volatility alerts, urgency flags
+  3. **Competitor Intelligence** - Update activity log, velocity comparison
+  4. **Content Gap Analysis** - Missing vocabulary, keyword opportunities, topic recommendations
+  5. **Executive Action Plan** - Top 3 priority initiatives with business impact
 
 ---
 
-### 4. **Web Performance Analyzer** ⚡
+## Execution Workflow
 
-**Type**: Standalone LLM Agent (Single)
-
-**Responsibility**: Evaluate technical SEO and Core Web Vitals
-
-**Tools Used**:
-
-- `analyze_web_vitals`: Fetches Google PageSpeed Insights data for both client and competitor URLs
-
-**Output** (key metrics):
-
-- **Performance Score** (0-100): Overall page speed
-- **LCP (Largest Contentful Paint)**: Loading performance (target: <2.5s)
-- **CLS (Cumulative Layout Shift)**: Visual stability (target: <0.1)
-- **FID (First Input Delay)**: Interactivity (target: <100ms)
-- **TTFB (Time to First Byte)**: Server response time
-- **FCP (First Contentful Paint)**: Paint timing
-
-**Metrics for Both**:
-
-- Mobile performance
-- Desktop performance
-- Device-specific insights
-
-**Rating System**:
-
-- 🟢 **GOOD**: Metric meets Google's threshold
-- 🟠 **NEEDS_IMPROVEMENT**: Between good and poor
-- 🔴 **POOR**: Below Google's minimum threshold
-
----
-
-### 5. **Competitor Analyst** 🎯
-
-**Type**: Standalone LLM Agent (Final synthesizer)
-
-**Responsibility**: Consolidate all gathered data into strategic insights
-
-**Input Data Sources**:
-
-- `performace_reporter_output`: Web Vitals data from Phase 1
-- `keyword_1-5_ranking_data`: Ranking positions from Phase 1
-- `competitor_1-5_sitemap_data`: Competitor update data from Phase 1
-- `competitor_1-5_content_data`: Content analysis from Phase 1
-- `content_analyst_for_our_website`: Client content analysis from Phase 1
-
-**Tools Used**:
-
-- `save_output_file`: Saves final strategic report to output folder
-
-**Output Structure** (Markdown Report):
-
-1. **Technical Health Check**
-
-   - Performance scorecard (Mobile vs Desktop)
-   - Core Web Vitals assessment
-   - Critical bottleneck identification
-
-2. **SERP Battlefield**
-
-   - Keyword ranking leaderboard
-   - Volatility alerts
-   - Urgent attention keywords
-
-3. **Competitor Intelligence & Velocity**
-
-   - Activity log of competitor updates
-   - Content volume comparison
-   - Update frequency patterns
-
-4. **Content Gap Analysis**
-
-   - Missing vocabulary analysis
-   - High TF-IDF keywords competitors use but client doesn't
-   - N-gram pattern gaps
-   - Search intent analysis
-
-5. **Executive Action Plan**
-   - Top 3 priority tickets
-   - Specific, actionable recommendations
-   - Resource allocation suggestions
-
----
-
-### 6. **Google Update Analyst** 📡
-
-**Type**: Standalone LLM Agent (Monitoring)
-
-**Responsibility**: Monitor and analyze latest Google Search algorithm updates and announcements
-
-**Tools Used**:
-- `fetch_google_search_status_updates`: Fetches latest updates from [Google Search Status Page](https://status.search.google.com/products/rGHU1u87FJnkP6W2GwMi/history)
-- `save_output_file`: Saves analysis report
-
-**Output** (JSON Analysis):
-
-- **Latest Update Title**: Name of the most recent update
-- **Impact Summary**: What changed and why it matters
-- **SEO Implications**: How this affects:
-  - Organic search visibility
-  - Ranking algorithms
-  - Indexing behavior
-  - SERP features
-- **Action Required**: Specific steps to take in response
-- **Severity Level**: Critical → High → Medium → Low
-- **Status**: Active, Resolved, or Monitoring
-- **Affected Areas**: Which parts of search are impacted
-- **Timestamp**: When the update was announced
-
-**Update Types Monitored**:
-- 🔴 **Core Algorithm Updates**: Broad ranking changes
-- 🟠 **Spam Updates**: Combat spam and low-quality content
-- 🟡 **Feature Rollouts**: New SERP features, rich results
-- 🔵 **Technical Changes**: Crawling, indexing, rendering improvements
-- ⚪ **Policy Changes**: Content guidelines, removal policies
-
-**Use Case**:
-- Track Google's official announcements
-- Understand ranking impacts immediately
-- Prepare SEO strategy adjustments
-- Communicate changes to stakeholders
-
----
-
-## Agent Workflow
-
-### Execution Flow
+### Complete Pipeline Flow
 
 ```
-START
-  │
-  ├─► MASTER ORCHESTRATOR (Sequential)
-  │   │
-  │   ├─► PHASE 1: DATA GATHERING (Parallel)
-  │   │   │
-  │   │   ├─► Content Alchemist (Parallel)
-  │   │   │   ├─► Competitor 1 Content Analysis
-  │   │   │   ├─► Competitor 2 Content Analysis
-  │   │   │   ├─► Competitor 3 Content Analysis
-  │   │   │   ├─► Competitor 4 Content Analysis
-  │   │   │   ├─► Competitor 5 Content Analysis
-  │   │   │   └─► Client Website Analysis
-  │   │   │
-  │   │   ├─► Rank Profiler (Parallel)
-  │   │   │   ├─► Keyword 1 SERP Analysis
-  │   │   │   ├─► Keyword 2 SERP Analysis
-  │   │   │   ├─► Keyword 3 SERP Analysis
-  │   │   │   ├─► Keyword 4 SERP Analysis
-  │   │   │   └─► Keyword 5 SERP Analysis
-  │   │   │
-  │   │   ├─► Competitor Update Checker (Parallel)
-  │   │   │   ├─► Competitor 1 Sitemap Analysis
-  │   │   │   ├─► Competitor 2 Sitemap Analysis
-  │   │   │   ├─► Competitor 3 Sitemap Analysis
-  │   │   │   ├─► Competitor 4 Sitemap Analysis
-  │   │   │   └─► Competitor 5 Sitemap Analysis
-  │   │   │
-  │   │   └─► Web Performance Analyzer
-  │   │       ├─► Client Website Performance
-  │   │       └─► Competitor Performance
-  │   │
-  │   ├─► [WAIT for Phase 1 Completion]
-  │   │
-  │   └─► PHASE 2: ANALYSIS (Sequential)
-  │       │
-  │       └─► Competitor Analyst
-  │           ├─► Technical Health Review
-  │           ├─► SERP Analysis
-  │           ├─► Competitor Intelligence
-  │           ├─► Content Gap Analysis
-  │           └─► Strategic Report Generation
-  │
-  └─► END
+START: Master Orchestrator
+│
+├─► PHASE 1: DATA GATHERING (All run in parallel, no waiting)
+│   │
+│   ├─► Content Alchemist (6 parallel sub-agents)
+│   │    └─ Analyzes: 5 competitors + client website
+│   │
+│   ├─► Rank Profiler (5 parallel sub-agents)
+│   │    └─ Analyzes: 5 target keywords
+│   │
+│   ├─► Competitor Update Checker (5 parallel sub-agents)
+│   │    └─ Fetches: 5 competitor sitemaps
+│   │
+│   └─► Web Performance Analyzer (single agent)
+│        └─ Fetches: Client + competitor performance metrics
+│
+├─► [WAIT for Phase 1 completion]  (~15-20 minutes)
+│
+├─► PHASE 2: ANALYSIS & SYNTHESIS (Sequential)
+│   │
+│   └─► Competitor Analyst Agent
+│        ├─ Reads Phase 1 outputs from context memory
+│        ├─ Synthesizes: Technical + Ranking + Content + Performance insights
+│        ├─ Generates: Strategic intelligence report (Markdown)
+│        └─ Saves: daily_report.md to output folder
+│
+└─► END: Report ready for stakeholders (~5-10 minutes)
 
-Timeline:
-Phase 1: ~15-20 minutes (all agents run in parallel)
-Phase 2: ~5-10 minutes (synthesis and analysis)
-Total: ~20-30 minutes
+⏱️ TOTAL TIME: 20-30 minutes
 ```
 
-### Data Flow
+### Data Flow Architecture
 
 ```
-Content Analysis      Ranking Data        Sitemap Data         Performance Data
-      │                    │                    │                      │
-      └────────────────────┴────────────────────┴──────────────────────┘
-                           │
-                    ┌──────▼──────┐
-                    │   CONTEXT   │
-                    │   MEMORY    │
-                    └──────┬──────┘
-                           │
-                    ┌──────▼──────────┐
-                    │ Competitor      │
-                    │ Analyst Agent   │
-                    │                 │
-                    │ Synthesizes &   │
-                    │ Correlates All  │
-                    │ Data Sources    │
-                    └──────┬──────────┘
-                           │
-                    ┌──────▼──────────┐
-                    │ Final Report    │
-                    │ (Markdown)      │
-                    │                 │
-                    │ • Technical     │
-                    │ • Rankings      │
-                    │ • Competitors   │
-                    │ • Content Gaps  │
-                    │ • Action Plan   │
-                    └─────────────────┘
+All Phase 1 outputs → Shared Context Memory
+                     ↓
+        ┌────────────┴────────────┐
+        │                         │
+   Content Analysis          Ranking Data
+   (Competitor vocab,        (SERP positions,
+    missing keywords)         ranking gaps)
+        │                         │
+        └────────────┬────────────┘
+                     │
+        ┌────────────┴────────────┐
+        │                         │
+   Sitemap Data              Performance Data
+   (Competitor velocity,     (Web Vitals scores,
+    update frequency)         technical issues)
+        │                         │
+        └────────────┬────────────┘
+                     │
+            ┌────────▼────────┐
+            │  Competitor     │
+            │  Analyst Agent  │
+            │  (LLM Model)    │
+            │  - Reads ALL    │
+            │  - Synthesizes  │
+            │  - Correlates   │
+            └────────┬────────┘
+                     │
+            ┌────────▼────────┐
+            │ daily_report.md │
+            │ (Strategic      │
+            │  Intelligence)  │
+            └─────────────────┘
 ```
 
 ---
 
 ## Prerequisites
 
-Before running the project, ensure you have:
-
 ### System Requirements
 
-- **Python**: 3.12 or higher
-- **macOS/Linux/Windows**: Any modern OS
-- **Internet Connection**: Required for API calls and web scraping
+- **Python 3.12+** (required for Google ADK)
+- **macOS, Linux, or Windows** with internet connection
+- **API Keys**: SerpAPI (for Google Search) + Google Cloud API Key (for PageSpeed Insights)
 
-### API Keys Required
+### Required API Keys
 
-1. **SERPAPI API Key** (for keyword ranking)
+1. **SerpAPI Key** (Google Search Rankings)
 
-   - Sign up at [serpapi.com](https://serpapi.com)
-   - Get your free/paid API key
-   - Cost: Free tier available, ~$100/month for 100k queries
+   - Sign up: [serpapi.com](https://serpapi.com)
+   - Free tier available (100 queries/month)
+   - Paid: ~$100/month for 100,000 queries
 
-2. **Google API Key** (for PageSpeed Insights)
-   - Set up at [Google Cloud Console](https://console.cloud.google.com)
+2. **Google API Key** (PageSpeed Insights)
+   - Create in: [Google Cloud Console](https://console.cloud.google.com)
    - Enable PageSpeed Insights API
-   - Create an API key for your project
-
-### Optional Dependencies
-
-- `.env` file for secure credential storage (recommended)
+   - Create service account or API key
 
 ---
 
-## Installation & Setup
+## Quick Start (5 minutes)
 
-### Step 1: Clone or Navigate to Project
+### 1. Clone/Navigate to Project
 
 ```bash
 cd /Users/shashanksah/Desktop/Project/kaggle_capstone_project
 ```
 
-### Step 2: Create Virtual Environment
+### 2. Create Virtual Environment
 
 ```bash
-# Create virtual environment
 python3 -m venv .venv
-
-# Activate virtual environment
-source .venv/bin/activate
-
-# On Windows, use:
-# .venv\Scripts\activate
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 ```
 
-### Step 3: Install Dependencies
+### 3. Install Dependencies
 
 ```bash
-# Install all required packages
-pip install -r requirements.txt
-
-# Or using the pyproject.toml
 pip install -e .
-
-# Manual installation (if above doesn't work):
-pip install google-adk python-multipart serpapi beautifulsoup4 scikit-learn python-dotenv requests
+# Or manually:
+pip install google-adk serpapi beautifulsoup4 scikit-learn requests python-dotenv
 ```
 
-**Dependencies**:
-
-- `google-adk`: Google Agent Development Kit for multi-agent orchestration
-- `serpapi`: Google Search API client for SERP data
-- `beautifulsoup4`: HTML parsing and scraping
-- `scikit-learn`: TF-IDF vectorization and NLP analysis
-- `requests`: HTTP requests for web scraping
-- `python-dotenv`: Environment variable management (optional)
-- `python-multipart`: Multipart form data handling
-
-### Step 4: Set Up Environment Variables
-
-Create a `.env` file in the project root:
+### 4. Set API Keys
 
 ```bash
 # Create .env file
 cat > .env << 'EOF'
-# SerpAPI Configuration (for Google Search rankings)
-SERPAPI_KEY=your_serpapi_api_key_here
-
-# Google API Configuration (for PageSpeed Insights)
+SERPAPI_KEY=your_serpapi_key_here
 GOOGLE_API_KEY=your_google_api_key_here
-
-# Optional: Log Level
-LOG_LEVEL=INFO
 EOF
+
+# Or export directly:
+export SERPAPI_KEY="your_key"
+export GOOGLE_API_KEY="your_key"
 ```
 
-**Or set environment variables directly**:
+### 5. Configure Target Keywords & Competitors
 
-```bash
-# In your shell (macOS/Linux)
-export SERPAPI_KEY="your_api_key_here"
-export GOOGLE_API_KEY="your_api_key_here"
+Edit these files to customize analysis:
 
-# In Windows PowerShell
-[Environment]::SetEnvironmentVariable("SERPAPI_KEY", "your_api_key_here", "User")
-[Environment]::SetEnvironmentVariable("GOOGLE_API_KEY", "your_api_key_here", "User")
-```
-
-### Step 5: Verify Installation
-
-```bash
-# Test Python and packages
-python --version
-python -c "import google.adk; import serpapi; import bs4; import sklearn; print('All dependencies installed!')"
-```
-
----
-
-## Configuration
-
-### 1. Update Target Keywords
-
-Edit `config/data/keywords.txt`:
-
-```plaintext
-1. keyword one
-2. keyword two
-3. keyword three
-4. keyword four
-5. keyword five
-```
-
-**Example** (current):
-
-```plaintext
-1. biodata
-2. marriage biodata
-3. bio data
-4. shaadi biodata
-5. wedding biodata
-```
-
-### 2. Update Competitor URLs
-
-Edit `config/data/competitor_url.txt`:
-
-```plaintext
-1: https://competitor1.com/
-2: https://competitor2.com/
-3: https://competitor3.com/
-4: https://competitor4.com/
-5: https://competitor5.com/
-```
-
-**Example** (current):
-
-```plaintext
-1: https://biodatamaker.app/
-2: https://createmybiodata.com/
-3: https://www.myperfectbiodata.com/
-4: https://www.simplebiodatamaker.in/
-5: https://marathibiodatamaker.com/
-```
-
-### 3. Update Client Website URL
-
-Edit `config/data/client_url.txt`:
-
-```plaintext
-https://your-client-website.com/
-```
-
-### 4. Agent Configuration (Advanced)
-
-Agents use specific Gemini models:
-
-- **Heavy Analysis**: `gemini-1.5-pro` (Content Analyst, Final Report)
-- **Standard Processing**: `gemini-2.5-flash` (Ranking, Performance)
-- **Lightweight Tasks**: `gemini-2.5-flash-lite` (Sitemaps, Parallel tasks)
-
-To modify, edit the respective agent files in `agents/*/agent.py`:
-
-```python
-model=Gemini(
-    model="gemini-2.5-flash-lite",  # Change model here
-    retry_options=get_http_retry_config()
-)
-```
+- **Keywords**: `config/data/keywords.txt` (5 target keywords)
+- **Competitors**: `config/data/competitor_url.txt` (5 competitor URLs)
+- **Client Site**: `config/data/client_url.txt` (your website URL)
 
 ---
 
 ## Running the Project
 
-### Method 1: Run Full Pipeline (Recommended)
+### Option 1: Run Full Pipeline (Recommended)
 
 ```bash
-# Ensure virtual environment is activated
+# Activate virtual environment
 source .venv/bin/activate
 
 # Run the complete orchestration
 python -m agents.root_agent.agent
-
-# Alternative (if main.py is configured):
-python main.py
 ```
 
-### Method 2: Run Individual Agents
+### Option 2: Run Individual Agents (Testing)
 
 ```bash
-# Test Content Alchemist (NLP Analysis)
+# Test Content Analysis
 python -c "from agents.content_alchemist.agent import root_agent; root_agent.execute()"
 
-# Test Rank Profiler (Keyword Rankings)
+# Test Ranking Analysis
 python -c "from agents.rank_profiler.agent import root_agent; root_agent.execute()"
 
-# Test Competitor Update Checker (Sitemaps)
+# Test Competitor Updates
 python -c "from agents.competitor_update_checker.agent import root_agent; root_agent.execute()"
 
-# Test Web Performance Analyzer
+# Test Web Performance
 python -c "from agents.web_performance.agent import root_agent; root_agent.execute()"
 
-# Test Competitor Analyst (Final Report)
+# Test Final Report
 python -c "from agents.competitor_analyst.agent import root_agent; root_agent.execute()"
 ```
 
-### Method 2b: Run Using ADK Web Interface
+### Option 3: Use ADK Web Interface (Interactive)
 
 ```bash
-# Launch interactive web UI for the agents
+# Launch web dashboard
 adk web ./agents
 
-# This starts a local web server (typically at http://localhost:8080)
-# where you can:
-# - View all available agents
-# - Test individual agents with custom inputs
-# - Monitor agent execution in real-time
-# - View agent outputs and logs
-# - Trigger specific agents or the full pipeline
+# Open browser: http://localhost:8080
+# Features:
+# - View all agents and descriptions
+# - Test individual agents interactively
+# - Monitor real-time execution
+# - Download outputs and reports
 ```
 
-### Method 3: Interactive Testing
-
-```bash
-# Start Python interactive shell
-python
-
-# Inside Python:
-from agents.root_agent.agent import root_agent
-result = root_agent.execute()
-print(result)
-```
-
-### Expected Output Flow
+### Expected Output
 
 ```
 [INFO] Starting Master Orchestrator...
 [INFO] PHASE 1: Data Gathering (Parallel)
-[INFO]   ├─ Content Alchemist started (6 agents)
-[INFO]   ├─ Rank Profiler started (5 agents)
-[INFO]   ├─ Competitor Update Checker started (5 agents)
-[INFO]   └─ Web Performance Analyzer started
+[INFO]   ├─ Content Alchemist started...
+[INFO]   ├─ Rank Profiler started...
+[INFO]   ├─ Competitor Update Checker started...
+[INFO]   └─ Web Performance Analyzer started...
 
-[Waiting for Phase 1 to complete... ~15-20 minutes]
+[Status] Waiting for Phase 1 completion (~15-20 minutes)...
 
-[INFO] PHASE 2: Analysis
+[INFO] PHASE 2: Analysis & Synthesis
 [INFO]   └─ Competitor Analyst synthesizing data...
 
 [SUCCESS] Report saved to: output/01-12-2025/daily_report.md
@@ -673,285 +381,117 @@ print(result)
 
 ---
 
-## ADK Web Interface
+## Output & Reports
 
-### Overview
+### Output Directory Structure
 
-The ADK (Agent Development Kit) Web interface provides an interactive dashboard to manage, monitor, and test your agents without writing code.
-
-### Launch ADK Web UI
-
-```bash
-# Start the ADK web server
-adk web ./agents
-
-# The server will start at http://localhost:8080 (default)
-# Output:
-# Server running on http://localhost:8080
-# Press Ctrl+C to stop
-```
-
-### ADK Web Commands
-
-```bash
-# Start web UI with custom port
-adk web ./agents --port 3000
-
-# Run with verbose logging
-adk web ./agents --verbose
-
-# Start web UI with environment file
-adk web ./agents --env .env
-
-# Specify custom host
-adk web ./agents --host 0.0.0.0 --port 8080
-
-# Enable debug mode
-adk web ./agents --debug
-```
-
-### Using the Web Interface
-
-Once the server is running:
-
-1. **View Agents**
-
-   - Navigate to `http://localhost:8080`
-   - See all available agents organized by category
-   - View agent descriptions and capabilities
-
-2. **Test Individual Agents**
-
-   - Click on any agent to view details
-   - Provide input parameters
-   - Execute agent and view real-time output
-   - Check execution logs and performance metrics
-
-3. **Monitor Execution**
-
-   - Watch agent status (Running, Completed, Failed)
-   - View progress bars for long-running agents
-   - Access streaming logs in real-time
-
-4. **Manage Outputs**
-
-   - View all generated outputs
-   - Download reports and analysis files
-   - Check execution history
-   - Compare results across runs
-
-5. **Run Full Pipeline**
-   - Trigger the complete Master Orchestrator
-   - Monitor all phases in real-time
-   - Track progress from Phase 1 (Data Gathering) to Phase 2 (Analysis)
-
-### Example Web UI Workflow
-
-```
-1. Open browser → http://localhost:8080
-2. Click "Master Orchestrator" agent
-3. Review input parameters and configuration
-4. Click "Execute" button
-5. Watch PHASE 1 (Parallel execution of all data gathering agents)
-6. Wait for completion indicator
-7. PHASE 2 (Competitor Analyst) starts automatically
-8. View final report in "Outputs" section
-9. Download or share the daily_report.md
-```
-
-### Troubleshooting ADK Web
-
-```bash
-# If port is already in use
-adk web ./agents --port 8081
-
-# If connection refused, check if service is running
-lsof -i :8080  # macOS/Linux
-
-# Restart the service
-Ctrl+C  # Stop current server
-adk web ./agents  # Start fresh
-
-# View web interface logs
-adk web ./agents --verbose 2>&1 | tee adk_web.log
-```
-
----
-
-## Output Structure
-
-### Report Naming & Classification
-
-**Official Report Name**: `Daily Competitive Intelligence & SEO Strategic Report`
-
-**File Generated**: `daily_report.md`
-
-**Report Classification**:
-
-- ✅ **Executive Intelligence Dashboard** (Strategic level)
-- ✅ **Competitive Intelligence Report** (Market analysis level)
-- ✅ **Strategic SEO Audit** (Technical + Content + Competitive)
-- ❌ **NOT an L3 Matrix** (L3 matrices are execution-focused checklists)
-
-**Key Distinction**:
-| Aspect | L3 Matrix | Your Report |
-|---|---|---|
-| **Format** | Spreadsheet table | Markdown document |
-| **Audience** | Execution teams | Decision-makers |
-| **Data Layers** | Keyword rankings only | 5 interconnected data sources |
-| **Analysis Depth** | Static yes/no | Root cause analysis |
-| **Recommendations** | Task lists | Strategic priorities |
-| **Frequency** | Monthly | Daily (automated) |
-
-### Output Directory
-
-All outputs are saved in `output/` with date-based folders:
+All reports and data files are saved in `output/` with date-based folders:
 
 ```
 output/
 ├── 01-12-2025/
-│   ├── daily_report.md                    # Main strategic report
-│   ├── competitor_1_result.json            # Content analysis
+│   ├── daily_report.md                      # Main strategic report (Markdown)
+│   ├── competitor_1_result.json             # Content analysis results
 │   ├── competitor_2_result.json
 │   ├── competitor_3_result.json
 │   ├── competitor_4_result.json
 │   ├── competitor_5_result.json
-│   ├── client_website_result.json          # Your website analysis
-│   ├── keyword_1_ranking_data.json         # SERP data
+│   ├── client_website_result.json           # Your website content analysis
+│   ├── keyword_1_ranking_data.json          # SERP ranking data
 │   ├── keyword_2_ranking_data.json
 │   ├── keyword_3_ranking_data.json
 │   ├── keyword_4_ranking_data.json
 │   ├── keyword_5_ranking_data.json
-│   ├── sitemap_1.json                      # Competitor sitemaps
+│   ├── sitemap_1.json                       # Competitor sitemap analysis
 │   ├── sitemap_2.json
 │   ├── sitemap_3.json
 │   ├── sitemap_4.json
 │   ├── sitemap_5.json
-│   ├── performace_reporter_output.json     # Web Vitals
-│   └── [additional analysis files]
+│   └── performace_reporter_output.json      # Web Vitals metrics
 └── [previous dates]/
 ```
 
-### Main Report Format
+### Main Report: `daily_report.md`
 
-`daily_report.md` is a **Markdown-formatted strategic intelligence brief** structured as follows:
+This is the **strategic intelligence brief** that synthesizes all data sources:
 
-```markdown
-# Daily Competitive Intelligence & SEO Strategic Report
+**Report Structure** (5-10 pages):
 
-**Date**: 2025-12-01 | **Generated by**: Master Orchestrator
+1. **Executive Summary**
 
-## Executive Summary
+   - Key metrics snapshot
+   - Critical alerts and threats
+   - Strategic opportunities
 
-- Key metrics snapshot
-- Critical alerts
-- Strategic opportunities
+2. **Technical Health Check**
 
-## Section 1: Technical Health Check
+   - Performance scorecard (Mobile vs Desktop)
+   - Core Web Vitals assessment (LCP, CLS, FID ratings)
+   - Critical bottlenecks affecting rankings
 
-- **Performance Scorecard**: Mobile vs Desktop comparison
-- **Core Web Vitals Assessment**:
-  - LCP (Loading), CLS (Stability), FID (Interactivity) ratings
-  - Device-specific insights
-  - Impact on rankings (correlation analysis)
-- **Critical Bottlenecks**: Issues affecting search visibility
+3. **SERP Battlefield** (Ranking Analysis)
 
-## Section 2: SERP Battlefield (Ranking Analysis)
+   - Keyword leaderboard (your rank vs competitors)
+   - Ranking gaps and volatility
+   - Quick wins (keywords near top positions)
+   - Urgent attention items (keywords at risk)
 
-- **Keyword Leaderboard**:
-  - Your rank vs competitors for each keyword
-  - Ranking gaps and volatility
-  - Position trends
-- **Quick Wins**: Keywords near breakthrough (position 3-5)
-- **Urgent Attention**: Keywords at risk (position 8+)
+4. **Competitor Intelligence & Velocity**
 
-## Section 3: Competitor Intelligence & Velocity
+   - Competitor activity log (recent updates)
+   - Content velocity comparison (URLs/month)
+   - Update frequency patterns
+   - Market aggressiveness trends
 
-- **Activity Log**:
-  - Which competitors updated recently
-  - New content published
-  - Site growth patterns
-- **Content Velocity Comparison**:
-  - Total URLs per competitor
-  - Update frequency (daily/weekly/monthly)
-  - Market aggressiveness indicator
-- **Market Positioning**: Competitive threats and opportunities
+5. **Content Gap Analysis**
 
-## Section 4: Content Gap Analysis
+   - Missing vocabulary (keywords competitors use)
+   - N-gram patterns you're missing
+   - Search intent gaps
+   - Topic recommendations with priority scores
 
-- **Missing Vocabulary**:
-  - High TF-IDF keywords competitors use but you don't
-  - Search intent gaps
-  - Topic recommendations
-- **N-Gram Pattern Analysis**:
-  - 2-word, 3-word, 4-word phrases you're missing
-  - Examples: "marriage biodata format", "shaadi biodata template"
-- **Content Opportunity Score**: Prioritized list of topics to create
-
-## Section 5: Executive Action Plan
-
-- **Priority Ticket #1**: High-impact, quick-win opportunity
-- **Priority Ticket #2**: Medium-impact strategic initiative
-- **Priority Ticket #3**: Long-term competitive advantage
-- Each includes: Business impact, effort estimate, success metrics
-```
+6. **Executive Action Plan**
+   - Priority #1: High-impact, quick-win
+   - Priority #2: Medium-impact strategic initiative
+   - Priority #3: Long-term competitive advantage
+   - Each with: business impact, effort estimate, success metrics
 
 **Report Characteristics**:
 
-- **Length**: 5-10 pages (comprehensive yet readable)
-- **Audience**: C-level, Product, Marketing, SEO leadership
-- **Actionability**: Every section ends with specific next steps
-- **Format**: Plain Markdown (easily shareable, convertible to PDF/HTML/Slack)
-- **Refresh**: Generated daily (can be automated via scheduler)
+- ✅ **Actionable**: Every section ends with specific next steps
+- ✅ **Multi-stakeholder**: Insights for C-level, product, marketing, SEO, engineering
+- ✅ **Data-driven**: All recommendations backed by analysis
+- ✅ **Shareable**: Plain Markdown (convertible to PDF, HTML, Slack)
+- ✅ **Automatable**: Can be generated daily via scheduler
 
 ### Data Files Format
 
-**Content Analysis** (JSON):
+**Content Analysis JSON**:
 
 ```json
 {
   "url": "https://competitor.com/",
-  "tfidf_keywords": {
-    "keyword1": 0.85,
-    "keyword2": 0.72
-  },
+  "tfidf_keywords": { "keyword1": 0.85, "keyword2": 0.72 },
   "bigrams": { "phrase one": 45, "phrase two": 38 },
   "trigrams": { "three word phrase": 12 },
   "unique_vocabulary_count": 2341
 }
 ```
 
-**Ranking Data** (JSON):
+**Ranking Data JSON**:
 
 ```json
 {
   "keyword": "biodata",
   "top_10_results": [
-    {
-      "position": 1,
-      "title": "...",
-      "url": "...",
-      "snippet": "..."
-    }
+    { "position": 1, "title": "...", "url": "...", "snippet": "..." }
   ],
   "client_rank": 3,
   "top_competitor": "competitor_name"
 }
 ```
 
-**Sitemap Analysis** (JSON):
-
-```json
-{
-  "competitor": "competitor_name",
-  "total_urls": 1250,
-  "last_updated": "2025-12-01T10:30:00Z",
-  "recently_updated": ["url1", "url2"],
-  "update_frequency": "daily"
-}
-```
-
-**Performance Metrics** (JSON):
+**Web Vitals JSON**:
 
 ```json
 {
@@ -960,7 +500,6 @@ output/
   "lcp": 2.1,
   "cls": 0.05,
   "ttfb": 0.8,
-  "fcp": 1.2,
   "device": "mobile",
   "rating": "GOOD"
 }
@@ -968,32 +507,34 @@ output/
 
 ---
 
-## Technologies Used
+## Technology Stack
 
 ### Core Framework
 
-- **Google Agent Development Kit (ADK)**: Multi-agent orchestration
-- **Gemini AI Models**: LLM backbone for analysis
+- **Google Agent Development Kit (ADK)** - Multi-agent orchestration and coordination
+- **Gemini AI Models** - Language models for analysis and synthesis
+  - `gemini-2.5-pro` for heavy analysis
+  - `gemini-2.5-flash` for standard processing
 
-### APIs & Services
+### External APIs
 
-- **Google Gemini API**: Large language model inference
-- **SerpAPI**: Google Search SERP data
-- **Google PageSpeed Insights API**: Web performance metrics
+- **Google Gemini API** - AI model inference
+- **SerpAPI** - Google Search SERP data (rankings)
+- **Google PageSpeed Insights API** - Web performance metrics
 
-### Libraries
+### Python Libraries
 
-- **BeautifulSoup4**: HTML parsing and web scraping
-- **scikit-learn**: Machine learning utilities (TF-IDF, vectorization)
-- **requests**: HTTP client for API calls
-- **python-dotenv**: Environment variable management
+- **BeautifulSoup4** - HTML parsing and web scraping
+- **scikit-learn** - TF-IDF vectorization, NLP analysis
+- **requests** - HTTP client for API calls
+- **python-dotenv** - Environment variable management
 
 ### Architecture Patterns
 
-- **Parallel Agent Pattern**: Run multiple agents simultaneously
-- **Sequential Agent Pattern**: Chain agents with dependencies
-- **Tool-Augmented LLM**: LLMs with access to external tools
-- **Context Passing**: Share data between agents via context memory
+- **Parallel Agent Pattern** - Multiple agents running simultaneously
+- **Sequential Agent Pattern** - Chained execution with dependencies
+- **Tool-Augmented LLM** - LLM agents with access to external tools
+- **Context Sharing** - Data sharing between agents via context memory
 
 ---
 
@@ -1001,7 +542,7 @@ output/
 
 ### Common Issues
 
-#### 1. "Missing API Key" Error
+#### Missing API Key Error
 
 ```
 Error: Missing API Key. Please set SERPAPI_KEY in your .env file
@@ -1011,10 +552,10 @@ Error: Missing API Key. Please set SERPAPI_KEY in your .env file
 
 ```bash
 export SERPAPI_KEY="your_key_here"
-# Or update .env file
+# Or update .env file and reload
 ```
 
-#### 2. "Unable to fetch URL" Error
+#### Connection Timeout
 
 ```
 Error: Connection timeout while fetching https://competitor.com/
@@ -1023,10 +564,10 @@ Error: Connection timeout while fetching https://competitor.com/
 **Solution**:
 
 - Check internet connection
-- Verify URL is correct in config files
-- Try adding/removing trailing slashes
+- Verify URLs in config files are correct
+- Try adding/removing trailing slashes from URLs
 
-#### 3. "Module not found" Error
+#### Module Not Found
 
 ```
 ModuleNotFoundError: No module named 'google.adk'
@@ -1036,21 +577,22 @@ ModuleNotFoundError: No module named 'google.adk'
 
 ```bash
 pip install google-adk --upgrade
+pip install -e .
 ```
 
-#### 4. API Rate Limiting
+#### API Rate Limiting
 
 ```
-Error: API rate limit exceeded
+Error: API rate limit exceeded (SerpAPI)
 ```
 
 **Solution**:
 
-- Wait before retrying (automatic retry is built-in)
+- Wait and retry (automatic retry is built-in)
 - Upgrade SerpAPI plan for higher limits
-- Reduce number of concurrent agents
+- Reduce number of concurrent agents (edit agent configuration)
 
-#### 5. Python Version Issue
+#### Python Version Error
 
 ```
 Error: Python 3.12+ required
@@ -1060,49 +602,151 @@ Error: Python 3.12+ required
 
 ```bash
 python3 --version
-# If < 3.12, upgrade:
+# If < 3.12, install Python 3.12+ from python.org or:
 brew install python3  # macOS
-# Or download from python.org
+```
+
+#### Web Interface Not Connecting
+
+```
+Error: Could not connect to http://localhost:8080
+```
+
+**Solution**:
+
+```bash
+# Try different port
+adk web ./agents --port 8081
+
+# Check if port is in use
+lsof -i :8080  # macOS/Linux
+
+# Kill process if needed, then restart
+adk web ./agents
 ```
 
 ---
 
 ## Future Enhancements
 
-- [ ] Scheduler for daily/weekly automatic reports
-- [ ] Database integration for historical tracking
-- [ ] Slack/Email delivery of reports
-- [ ] Frontend dashboard for visualization
-- [ ] A/B testing recommendations
-- [ ] Content calendar generation
-- [ ] Backlink analysis integration
-- [ ] Search intent classification
-- [ ] Seasonal trend analysis
+- [ ] Daily/weekly automatic scheduling (cron or cloud functions)
+- [ ] Database integration for historical tracking and trend analysis
+- [ ] Slack/Email integration for automated report delivery
+- [ ] Frontend dashboard for data visualization and insights
+- [ ] A/B testing recommendations engine
+- [ ] Automated content calendar generation
+- [ ] Backlink analysis and monitoring
+- [ ] Search intent classification and clustering
+- [ ] Seasonal trend analysis and forecasting
+- [ ] Predictive ranking models
 
 ---
 
-## Support & Contribution
+## Project Structure
 
-For issues or improvements:
+```
+kaggle_capstone_project/
+├── agents/                         # All agent implementations
+│   ├── root_agent/                # Master orchestrator
+│   ├── content_alchemist/          # NLP content analysis
+│   ├── rank_profiler/              # Keyword ranking analysis
+│   ├── competitor_update_checker/  # Sitemap monitoring
+│   ├── web_performance/            # Web Vitals analysis
+│   └── competitor_analyst/         # Final synthesis & reporting
+├── tools/                          # Utility tools
+│   ├── nlp_analyzer.py             # TF-IDF and n-gram extraction
+│   ├── ranking_monitor.py          # SerpAPI integration
+│   ├── web_vitals_fetcher.py       # PageSpeed Insights integration
+│   └── sitemap_fetcher.py          # Sitemap parsing
+├── utils/                          # Helper utilities
+│   ├── file_loader.py              # File I/O operations
+│   ├── file_saver.py               # Output saving
+│   └── retry_config.py             # API retry configuration
+├── config/data/                    # Configuration files
+│   ├── keywords.txt                # Target keywords (5)
+│   ├── competitor_url.txt          # Competitor URLs (5)
+│   └── client_url.txt              # Client website URL
+├── output/                         # Generated reports and data
+├── ARCHITECTURE.md                 # Detailed architecture documentation
+├── README.md                       # This file
+└── pyproject.toml                  # Project dependencies
+```
 
-1. Check logs in `output/` folder
-2. Verify all configuration files are updated
-3. Test individual agents first
-4. Check API key quotas
+---
+
+## Key Features
+
+✅ **Automated Intelligence** - Runs without manual intervention  
+✅ **Multi-Agent Architecture** - Parallel processing for speed  
+✅ **Data Integration** - Synthesizes 5 data sources (rankings, content, velocity, performance, vitals)  
+✅ **Strategic Insights** - Beyond rankings: root cause analysis & recommendations  
+✅ **Real-Time SERP Data** - Current Google Search rankings for India  
+✅ **Content Analysis** - AI-powered NLP for content gaps and opportunities  
+✅ **Performance Audits** - Core Web Vitals and PageSpeed Insights  
+✅ **Competitor Tracking** - Monitor update frequency and velocity  
+✅ **Shareable Reports** - Markdown format for easy distribution  
+✅ **Customizable** - Configure keywords, competitors, and client URLs
+
+---
+
+## Support & Debugging
+
+**For troubleshooting**:
+
+1. Check logs in `output/` folder for error messages
+2. Verify all API keys are set correctly
+3. Confirm configuration files have proper URLs
+4. Test individual agents before running full pipeline
+5. Check your API quotas (especially SerpAPI)
+
+**For questions or issues**:
+
+- Review `ARCHITECTURE.md` for detailed system design
+- Check `agents/*/instructions.txt` for agent-specific behavior
+- Review tool documentation in `tools/`
 
 ---
 
 ## License
 
-[Add your license information]
+MIT License
+
+Copyright (c) 2025 SEO Competitive Intelligence & Analysis Engine
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 
 ---
 
 ## Project Metadata
 
-- **Author**: [Your Name]
+- **Project Name**: SEO Competitive Intelligence & Analysis Engine
+- **Author**: Shashank Sah
+- **Contact**: shashanksah143@gmail.com
+- **Niche**: Biodata/Matrimonial Services
+- **Target Domain**: India (Google.co.in)
 - **Created**: December 2025
-- **Purpose**: SEO Audit & Competitive Intelligence
-- **Target Domain**: Biodata/Matrimonial Services
 - **Python Version**: 3.12+
+- **Framework**: Google Agent Development Kit (ADK)
+- **LLM**: Google Gemini (2.5-pro, 2.5-flash)
 - **Status**: Active Development
+- **Frequency**: Daily automated reporting (configurable)
+
+---
+
+**Built with ❤️ for data-driven SEO decisions**
