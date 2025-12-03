@@ -10,6 +10,7 @@ from utils.retry_config import get_http_retry_config
 from utils.file_loader import load_file_content
 from utils.file_saver import save_output_file
 from tools.web_vitals_fetcher import analyze_web_vitals
+from agents.web_performance.output_models import WebPerformanceOutput
 
 # Load Instructions
 instruction_text = load_file_content("agents/web_performance/instructions.txt")
@@ -24,6 +25,7 @@ performace_reporter_agent = LlmAgent(
     instruction=instruction_text,
     description=description_text,
     output_key="performace_reporter_output", # The Analyst will look for this key
+    output_schema=WebPerformanceOutput,  # Structured output schema for Google ADK LLM
     tools=[analyze_web_vitals, save_output_file]
 )
 
